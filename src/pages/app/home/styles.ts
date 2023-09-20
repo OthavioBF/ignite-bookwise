@@ -1,54 +1,119 @@
 import { styled } from '../../../styles/stitches.config'
 
 export const Container = styled('div', {
-  padding: '$5',
   display: 'flex',
+  gap: '4rem',
 })
 
-export const ImageContainer = styled('div', {
-  img: {
-    objectFit: 'cover',
-  },
-})
-
-export const LoginContaier = styled('div', {
+export const Header = styled('div', {
+  width: '100%',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-})
+  gap: '$4',
 
-export const LoginContent = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$10',
+  marginBottom: '$10',
 
-  h1: {},
+  svg: {
+    color: '$green100',
+  },
 
-  span: {
-    color: '$gray200',
+  h1: {
+    fontWeight: 'bold',
+    fontSize: '$xl',
   },
 })
 
-export const LoginCardContainer = styled('div', {
+export const AssessmentsContainer = styled('div', {
+  overflowY: 'auto',
+  maxHeight: '82.5vh',
+  marginBottom: '$5',
+
+  '&::-webkit-scrollbar': {
+    width: '0',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: 'transparent',
+  },
+})
+
+export const LastReadContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$4',
+
+  '> div': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    button: {
+      display: 'flex',
+      gap: '0.875rem',
+      alignItems: 'center',
+      color: '$purple100',
+      padding: '$1 $2',
+      borderRadius: '6px',
+
+      svg: {
+        color: '$purple100',
+      },
+
+      '&:hover': {
+        background: 'rgba(131, 129, 217, 0.2)',
+      },
+    },
+  },
 })
 
-export const LoginCard = styled('button', {
-  background: '$gray600',
-  border: '1px solid $gray600',
-  width: '23.25rem',
-
-  padding: '$5 $6',
+export const RecentAssessmentsContainer = styled('div', {
   display: 'flex',
-  alignItems: 'center',
+  flexDirection: 'column',
+  gap: '$4',
+  marginTop: '$10',
+})
+
+export const PopularBooksContainer = styled('aside', {
+  display: 'flex',
+  flexDirection: 'column',
   gap: '$5',
+  marginTop: '4.25rem',
 
-  borderRadius: '8px',
+  div: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
 
-  '&:hover': {
-    border: '1px solid $gray500',
+    button: {
+      display: 'flex',
+      gap: '0.875rem',
+      alignItems: 'center',
+      color: '$purple100',
+      padding: '$1 $2',
+      borderRadius: '6px',
+
+      svg: {
+        color: '$purple100',
+      },
+
+      '&:hover': {
+        background: 'rgba(131, 129, 217, 0.2)',
+      },
+    },
+  },
+})
+
+export const BookCardContainer = styled('main', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$3',
+
+  overflowY: 'auto',
+  maxHeight: '650px',
+
+  '&::-webkit-scrollbar': {
+    width: '0',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: 'transparent',
   },
 })

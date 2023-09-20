@@ -15,5 +15,6 @@ export const globalStyles = globalCss({
       all: 'unset',
       cursor: 'pointer',
     },
+    overflow: 'hidden',
   },
 })

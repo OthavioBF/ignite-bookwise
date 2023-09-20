@@ -9,7 +9,7 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  background: 'linear-gradient(90deg, $green200 0%, $purple200 100%)',
+  background: 'linear-gradient(to bottom, $purple200 0% 60%, $green200)',
 })
 
 export const SideBarHeader = styled('div', {

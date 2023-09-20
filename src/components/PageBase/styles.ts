@@ -6,5 +6,7 @@ export const Container = styled('div', {
   display: 'flex',
   gap: '6rem',
 
-  main: {},
+  '> main': {
+    paddingTop: '3.25rem',
+  },
 })
