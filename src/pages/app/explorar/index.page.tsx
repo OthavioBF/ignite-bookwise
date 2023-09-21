@@ -1,25 +1,47 @@
-import Image from 'next/image'
-import {
-  Container,
-  ImageContainer,
-  LoginCard,
-  LoginCardContainer,
-  LoginContaier,
-  LoginContent,
-} from './styles'
-
-import backgroundImg from '../../assets/Image.png'
-import googleLogo from '../../assets/googleLogo.svg'
-import githubLogo from '../../assets/githubLogo.svg'
-import rocketLogo from '../../assets/rocketLogo.svg'
-import { NextPageWithLayout } from '../../_app.page'
 import { ReactElement } from 'react'
+import { NextPageWithLayout } from '../../_app.page'
+import { Binoculars, MagnifyingGlass } from 'phosphor-react'
+
+import { ChipsContainer, Container, Content, ExploreHeader } from './styles'
+
 import { PageBase } from '@/components/PageBase'
+import { BookCard } from '@/components/BookCard'
+import { CategoryChips } from '@/components/CategoryChips'
 
 const Explorar: NextPageWithLayout = () => {
   return (
     <Container>
-      <h1>Explorar</h1>
+      <ExploreHeader>
+        <div>
+          <Binoculars size={24} />
+          <h1>Explorar</h1>
+        </div>
+        <label>
+          <input type="text" placeholder="Buscar livro ou autor" />
+          <MagnifyingGlass size={20} />
+        </label>
+      </ExploreHeader>
+
+      <ChipsContainer>
+        <CategoryChips isSelected />
+        <CategoryChips />
+        <CategoryChips />
+        <CategoryChips />
+        <CategoryChips />
+      </ChipsContainer>
+      <Content>
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+        <BookCard biggerImage />
+      </Content>
     </Container>
   )
 }

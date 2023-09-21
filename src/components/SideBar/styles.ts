@@ -1,4 +1,4 @@
-import { styled, css } from '../../styles/stitches.config'
+import { styled } from '../../styles/stitches.config'
 
 export const Container = styled('div', {
   padding: '$10 3.25rem $6',

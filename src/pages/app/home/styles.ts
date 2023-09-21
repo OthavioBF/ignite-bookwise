@@ -54,6 +54,8 @@ export const LastReadContainer = styled('div', {
       padding: '$1 $2',
       borderRadius: '6px',
 
+      transition: 'all 0.2s ease-in-out',
+
       svg: {
         color: '$purple100',
       },
@@ -90,6 +92,8 @@ export const PopularBooksContainer = styled('aside', {
       color: '$purple100',
       padding: '$1 $2',
       borderRadius: '6px',
+
+      transition: 'all 0.2s ease-in-out',
 
       svg: {
         color: '$purple100',

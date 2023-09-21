@@ -7,6 +7,14 @@ export const Container = styled('button', {
   borderRadius: '8px',
   display: 'flex',
   gap: '$5',
+
+  border: '1px solid transparent',
+
+  transition: 'all 0.2s ease-in-out',
+
+  '&:hover': {
+    border: '1px solid $gray500',
+  },
 })
 
 export const ContainerMoreDetails = styled('button', {
@@ -48,6 +56,14 @@ export const ContainerMoreDetails = styled('button', {
         },
       },
     },
+  },
+
+  border: '1px solid transparent',
+
+  transition: 'all 0.2s ease-in-out',
+
+  '&:hover': {
+    border: '1px solid $gray500',
   },
 })
 

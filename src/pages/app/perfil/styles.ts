@@ -3,52 +3,168 @@ import { styled } from '../../../styles/stitches.config'
 export const Container = styled('div', {
   padding: '$5',
   display: 'flex',
+  flexDirection: 'column',
 })
 
-export const ImageContainer = styled('div', {
-  img: {
-    objectFit: 'cover',
+export const PerfilHeader = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '',
+  width: '100%',
+
+  div: {
+    display: 'flex',
+    gap: '$3',
+  },
+
+  svg: {
+    color: '$green100',
+  },
+
+  h1: {
+    fontWeight: 'bold',
+    fontSize: '$xl',
   },
 })
 
-export const LoginContaier = styled('div', {
+export const Content = styled('main', {
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
+  gap: '4rem',
 })
 
-export const LoginContent = styled('div', {
+export const ListContainer = styled('div', {
+  label: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '$3 $5',
+    gap: '$2',
+    marginBottom: '$8',
+    marginTop: '$10',
+
+    border: '1px solid $gray500',
+    borderRadius: '4px',
+
+    transition: 'all 0.2s ease-in-out',
+
+    svg: {
+      color: '$gray500',
+    },
+
+    input: {
+      width: '100%',
+      color: '$gray200',
+      fontSize: '$sm',
+    },
+
+    '&:has(input:focus)': {
+      borderColor: '$green200',
+
+      svg: {
+        color: '$grenn200',
+      },
+    },
+  },
+})
+
+export const ScrollView = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '$10',
+  gap: '$6',
 
-  h1: {},
+  overflowY: 'auto',
+  maxHeight: '68vh',
+  marginBottom: '$5',
+
+  '&::-webkit-scrollbar': {
+    width: '0',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: 'transparent',
+  },
+
+  div: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '$2',
+  },
 
   span: {
-    color: '$gray200',
+    fontSize: '$sm',
+    color: '$gray300',
   },
 })
 
-export const LoginCardContainer = styled('div', {
+export const ProfileContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '$4',
-})
+  marginTop: '$10',
 
-export const LoginCard = styled('button', {
-  background: '$gray600',
-  border: '1px solid $gray600',
-  width: '23.25rem',
-
-  padding: '$5 $6',
-  display: 'flex',
   alignItems: 'center',
-  gap: '$5',
+  borderLeft: '1px solid $gray700',
 
-  borderRadius: '8px',
+  '> header': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
 
-  '&:hover': {
-    border: '1px solid $gray500',
+    img: {
+      objectFit: 'cover',
+      borderRadius: '50%',
+    },
+
+    strong: {
+      marginTop: '$5',
+      fontSize: '$xl',
+      color: '$gray100',
+      fontWeight: 'bold',
+    },
+
+    span: {
+      fontSize: '$sm',
+      color: '$gray400',
+    },
+  },
+
+  '> div': {
+    height: '4px',
+    width: '32px',
+    background: '$gradient-horizontal',
+    color: 'transparent',
+    borderRadius: 99,
+    marginTop: '$8',
+    marginBottom: '$8',
+  },
+
+  footer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '$10',
+    padding: '$5 3.5rem',
+
+    div: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '$5',
+
+      '> div': {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: 0,
+        strong: {
+          fontSize: '$md',
+          color: '$gray200',
+          fontWeight: 'bold',
+        },
+
+        span: {
+          fontSize: '$sm',
+          color: '$gray300',
+        },
+      },
+
+      svg: {
+        color: '$green100',
+      },
+    },
   },
 })
