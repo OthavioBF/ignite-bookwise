@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { Container } from './styles'
 import { SideBar } from '../SideBar'
 import { LoginModal } from '../LoginModal'
@@ -8,12 +8,17 @@ interface PageBaseProps {
 }
 
 export function PageBase({ children }: PageBaseProps) {
+  const [loginModalOpen, setLoginModalOpen] = useState(false)
+
   return (
     <Container>
-      <SideBar />
+      <SideBar openLoginModal={() => setLoginModalOpen(true)} />
       <main>{children}</main>
 
-      <LoginModal />
+      <LoginModal
+        isOpen={loginModalOpen}
+        handleClose={() => setLoginModalOpen(false)}
+      />
     </Container>
   )
 }

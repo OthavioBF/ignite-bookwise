@@ -13,7 +13,11 @@ import {
 } from './styles'
 import { useRouter } from 'next/router'
 
-export function SideBar() {
+interface SideBarProps {
+  openLoginModal: () => void
+}
+
+export function SideBar({ openLoginModal }: SideBarProps) {
   const [selectedRoute, setSelectedRoute] = useState('home')
 
   const router = useRouter()
@@ -62,7 +66,7 @@ export function SideBar() {
       </SideBarHeader>
 
       <SideBarFooter>
-        <FooterContent>
+        <FooterContent onClick={openLoginModal}>
           {logged ? (
             <>
               <Image src="" width={32} height={32} alt="" />
