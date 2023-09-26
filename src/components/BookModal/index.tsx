@@ -5,40 +5,53 @@ import googleLogo from '../../assets/googleLogo.svg'
 import githubLogo from '../../assets/githubLogo.svg'
 
 import {
+  CommentsContainer,
+  CommentsContent,
   Container,
-  LoginCard,
-  LoginCardContainer,
   ModalContent,
+  ScrollView,
 } from './styles'
 import { useState } from 'react'
+import { BookModalCard } from '../BookModalCard'
+import { CommentsCard } from '../CommentsCard'
+import { Comment } from '../Comment'
 
-interface LoginModalProps {
+interface BookModalProps {
   isOpen: boolean
   handleClose: () => void
 }
 
-export function LoginModal({ isOpen, handleClose }: LoginModalProps) {
+export function BookModal({ isOpen = true, handleClose }: BookModalProps) {
+  const [openComment, setOpenComment] = useState(false)
+
   return (
     <Container isOpen={isOpen}>
       <ModalContent>
-        <header>
-          <button onClick={handleClose}>
-            <X size={24} />
-          </button>
-        </header>
+        <ScrollView>
+          <header>
+            <button onClick={handleClose}>
+              <X size={24} />
+            </button>
+          </header>
+          <BookModalCard />
 
-        <h1>Faça login para deixar sua avaliação</h1>
+          <CommentsContainer>
+            <div>
+              <span>Avaliações</span>
+              <button onClick={() => setOpenComment(true)}>Avaliar</button>
+            </div>
 
-        <LoginCardContainer>
-          <LoginCard>
-            <Image src={googleLogo} width={32} height={32} alt="" />
-            <strong>Entrar com Google</strong>
-          </LoginCard>
-          <LoginCard>
-            <Image src={githubLogo} width={32} height={32} alt="" />
-            <strong>Entrar com GitHub</strong>
-          </LoginCard>
-        </LoginCardContainer>
+            {openComment && (
+              <Comment closeComment={() => setOpenComment(false)} />
+            )}
+
+            <CommentsContent>
+              <CommentsCard />
+              <CommentsCard />
+              <CommentsCard />
+            </CommentsContent>
+          </CommentsContainer>
+        </ScrollView>
       </ModalContent>
     </Container>
   )

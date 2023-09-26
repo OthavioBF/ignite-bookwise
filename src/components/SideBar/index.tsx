@@ -33,7 +33,7 @@ export function SideBar({ openLoginModal }: SideBarProps) {
   return (
     <Container>
       <SideBarHeader>
-        <Image src={Logo} alt="" />
+        <Image src={Logo} width={128} height={32} alt="" />
 
         <SectionsContainer>
           <NavigationButton

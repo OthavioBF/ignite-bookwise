@@ -29,6 +29,7 @@ export function BookCard({ hasDescription, biggerImage }: PageBaseProps) {
               SVGstrokeColor="#8381D9"
               emptyColor="transparent"
               fillColor="#8381D9"
+              readonly
             />
           </footer>
         </div>
@@ -65,6 +66,7 @@ export function BookCard({ hasDescription, biggerImage }: PageBaseProps) {
                 SVGstrokeColor="#8381D9"
                 emptyColor="transparent"
                 fillColor="#8381D9"
+                readonly
               />
             </footer>
           </div>
@@ -86,6 +88,7 @@ export function BookCard({ hasDescription, biggerImage }: PageBaseProps) {
                 SVGstrokeColor="#8381D9"
                 emptyColor="transparent"
                 fillColor="#8381D9"
+                readonly
               />
             </footer>
           </div>

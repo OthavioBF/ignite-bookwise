@@ -18,6 +18,9 @@ export const globalStyles = globalCss({
     input: {
       all: 'unset',
     },
+    textarea: {
+      all: 'unset',
+    },
     overflow: 'hidden',
   },
 })

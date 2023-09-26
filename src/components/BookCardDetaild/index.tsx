@@ -34,6 +34,7 @@ export function BookCardDetaild() {
           SVGstrokeColor="#8381D9"
           emptyColor="transparent"
           fillColor="#8381D9"
+          readonly
         />
       </header>
       <Content>
@@ -67,6 +68,7 @@ export function BookCardDetaild() {
             SVGstrokeColor="#8381D9"
             emptyColor="transparent"
             fillColor="#8381D9"
+            readonly
           />
         </header>
         <div>
