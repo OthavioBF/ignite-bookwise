@@ -8,19 +8,45 @@ import {
   PopularBooksContainer,
   RecentAssessmentsContainer,
 } from './styles'
-
-import backgroundImg from '../../assets/Image.png'
-import googleLogo from '../../assets/googleLogo.svg'
-import githubLogo from '../../assets/githubLogo.svg'
-import rocketLogo from '../../assets/rocketLogo.svg'
-import { NextPageWithLayout } from '../../_app.page'
+import { NextPageWithLayout } from '../_app.page'
 import { ReactElement } from 'react'
 import { PageBase } from '@/components/PageBase'
 import { CaretRight, ChartLineUp } from 'phosphor-react'
 import { BookCardDetaild } from '@/components/BookCardDetaild'
 import { BookCard } from '@/components/BookCard'
+import { GetServerSideProps } from 'next'
+import { SystemAxios } from '@/services/api'
 
-const Home: NextPageWithLayout = () => {
+export type RecentRates = {
+  id: string
+  username: string
+  userAvatar: string
+  rateDate: number
+  rate: number
+  bookCover: string
+  bookTitle: string
+  bookAuthor: string
+  bookSummary: string
+}
+
+export type PopularBooks = {
+  id: string
+  bookTitle: string
+  bookAuthor: string
+  bookCover: string
+  rate: number
+  bookSummary?: string
+  biggerImage?: boolean
+}
+
+interface HomeProps {
+  data: {
+    recentRates: RecentRates[]
+    popularBooks: PopularBooks[]
+  }
+}
+
+const Home: NextPageWithLayout<HomeProps> = ({ data }: HomeProps) => {
   return (
     <Container>
       <div>
@@ -36,16 +62,14 @@ const Home: NextPageWithLayout = () => {
                 Ver todas <CaretRight />
               </button>
             </div>
-
-            <BookCardDetaild />
           </LastReadContainer>
           <RecentAssessmentsContainer>
             <div>
               <span>Avaliações mais recentes</span>
             </div>
-            <BookCardDetaild />
-            <BookCardDetaild />
-            <BookCardDetaild />
+            {data.recentRates.map((rate) => (
+              <BookCardDetaild key={rate.id} data={rate} />
+            ))}
           </RecentAssessmentsContainer>
         </AssessmentsContainer>
       </div>
@@ -59,18 +83,25 @@ const Home: NextPageWithLayout = () => {
         </div>
 
         <BookCardContainer>
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
+          {data.popularBooks.map((book) => (
+            <BookCard key={book.id} data={book} />
+          ))}
         </BookCardContainer>
       </PopularBooksContainer>
     </Container>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await SystemAxios.get('/home')
+
+  console.log('data', data)
+
+  return {
+    props: {
+      data,
+    },
+  }
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {

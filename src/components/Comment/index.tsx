@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { Rating } from 'react-simple-star-rating'
 import { Container, Content, TextArea } from './styles'
 
-import domain from '../../assets/domain-driven-design.png'
 import { Check, X } from 'phosphor-react'
 
 interface CommentProps {
@@ -15,7 +14,7 @@ export function Comment({ closeComment }: CommentProps) {
     <Container>
       <header>
         <div>
-          <Image src={domain} width={40} height={40} alt="" />
+          <Image src="" width={40} height={40} alt="" />
           <strong>Jaxson Dias</strong>
         </div>
 

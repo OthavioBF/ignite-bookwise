@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { Rating } from 'react-simple-star-rating'
 import { Container, Content, InfoContainer, TitleContainer } from './styles'
 
-import domain from '../../assets/domain-driven-design.png'
 import { BookOpen, BookmarkSimple } from 'phosphor-react'
 
 interface PageBaseProps {
@@ -15,7 +14,7 @@ export function BookModalCard({ hasDescription, biggerImage }: PageBaseProps) {
   return (
     <Container>
       <Content>
-        <Image src={domain} width={171} height={242} alt="" />
+        <Image src="" width={171} height={242} alt="" />
 
         <InfoContainer>
           <TitleContainer>

@@ -8,23 +8,28 @@ import {
   Content,
   InfoContainer,
 } from './styles'
-import domain from '../../assets/domain-driven-design.png'
 
-interface PageBaseProps {
-  children: ReactNode
+import { RecentRates } from '@/pages/home/index.page'
+
+interface BookCardDetaildProps {
+  data: RecentRates
 }
 
-export function BookCardDetaild() {
-  const moreDetails = true
-
-  return moreDetails ? (
+export function BookCardDetaild({ data }: BookCardDetaildProps) {
+  return data?.username ? (
     <ContainerMoreDetails>
       <header>
         <div>
-          <Image src={domain} width={40} height={40} alt="" />
+          <Image
+            loader={() => data.userAvatar}
+            src={data.userAvatar}
+            width={40}
+            height={40}
+            alt=""
+          />
           <div>
-            <strong>Jaxson Dias</strong>
-            <span>Há 2 dias</span>
+            <strong>{data.username}</strong>
+            <span>Há {data.rateDate} dias</span>
           </div>
         </div>
 
@@ -35,33 +40,42 @@ export function BookCardDetaild() {
           emptyColor="transparent"
           fillColor="#8381D9"
           readonly
+          initialValue={data.rate}
         />
       </header>
       <Content>
-        <Image src={domain} width={108} height={152} alt="" />
+        <Image
+          loader={() => data.bookCover}
+          src={data.bookCover}
+          width={108}
+          height={152}
+          alt=""
+        />
 
         <InfoContainer>
           <div>
-            <h1>A revolução dos bichos</h1>
-            <span>George Orwell</span>
+            <h1>{data.bookTitle}</h1>
+            <span>{data.bookAuthor}</span>
           </div>
           <footer>
-            <p>
-              Nec tempor nunc in egestas. Euismod nisi eleifend at et in
-              sagittis. Penatibus id vestibulum imperdiet a at imperdiet
-              lectu...
-            </p>
+            <p>{data.bookSummary}</p>
           </footer>
         </InfoContainer>
       </Content>
     </ContainerMoreDetails>
   ) : (
     <Container>
-      <Image src={domain} width={108} height={152} alt="" />
+      <Image
+        loader={() => data.userAvatar}
+        src={data.userAvatar}
+        width={108}
+        height={152}
+        alt=""
+      />
 
       <InfoContainer>
         <header>
-          <span>Há 2 dias</span>
+          <span>Há {data.rateDate} dias</span>
           <Rating
             size={14}
             SVGstorkeWidth={1}
@@ -69,17 +83,15 @@ export function BookCardDetaild() {
             emptyColor="transparent"
             fillColor="#8381D9"
             readonly
+            initialValue={data.rate}
           />
         </header>
         <div>
-          <h1>A revolução dos bichos</h1>
-          <span>George Orwell</span>
+          <h1>{data.bookTitle}</h1>
+          <span>{data.bookAuthor}</span>
         </div>
         <footer>
-          <p>
-            Nec tempor nunc in egestas. Euismod nisi eleifend at et in sagittis.
-            Penatibus id vestibulum imperdiet a at imperdiet lectu...
-          </p>
+          <p>{data.bookSummary}</p>
         </footer>
       </InfoContainer>
     </Container>

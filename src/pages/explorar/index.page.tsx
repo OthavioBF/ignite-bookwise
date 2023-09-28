@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { NextPageWithLayout } from '../../_app.page'
+import { NextPageWithLayout } from '../_app.page'
 import { Binoculars, MagnifyingGlass } from 'phosphor-react'
 
 import { ChipsContainer, Container, Content, ExploreHeader } from './styles'

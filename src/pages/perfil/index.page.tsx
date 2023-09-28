@@ -1,4 +1,17 @@
+import { ReactElement } from 'react'
+import { GetStaticProps } from 'next'
 import Image from 'next/image'
+import { NextPageWithLayout } from '../_app.page'
+
+import {
+  BookOpen,
+  BookmarkSimple,
+  Books,
+  MagnifyingGlass,
+  User,
+  UserList,
+} from 'phosphor-react'
+
 import {
   Container,
   Content,
@@ -8,22 +21,13 @@ import {
   ScrollView,
 } from './styles'
 
-import backgroundImg from '../../assets/Image.png'
-import googleLogo from '../../assets/googleLogo.svg'
-import githubLogo from '../../assets/githubLogo.svg'
-import rocketLogo from '../../assets/rocketLogo.svg'
-import { NextPageWithLayout } from '../../_app.page'
-import { ReactElement } from 'react'
 import { PageBase } from '@/components/PageBase'
-import {
-  BookOpen,
-  BookmarkSimple,
-  Books,
-  MagnifyingGlass,
-  User,
-  UserList,
-} from 'phosphor-react'
 import { BookCard } from '@/components/BookCard'
+import { api } from '@/services/api'
+
+interface PerfilProps {
+  response: any[]
+}
 
 const Perfil: NextPageWithLayout = () => {
   return (
@@ -106,6 +110,17 @@ const Perfil: NextPageWithLayout = () => {
     </Container>
   )
 }
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   const response = await api.get('/perfil')
+
+//   return {
+//     props: {
+//       response,
+//     },
+//     revalidate: 60 * 60 * 12, // 12 horas
+//   }
+// }
 
 Perfil.getLayout = function getLayout(page: ReactElement) {
   return <PageBase>{page}</PageBase>
