@@ -1,8 +1,7 @@
 import { styled } from '../../styles/stitches.config'
 
 export const Container = styled('div', {
-  padding: '$5',
-  gap: '$5',
+  width: '90%',
 })
 
 export const ExploreHeader = styled('div', {
@@ -58,15 +57,36 @@ export const ExploreHeader = styled('div', {
 
 export const ChipsContainer = styled('div', {
   display: 'flex',
+  flexWrap: 'wrap',
   alignItems: 'center',
   gap: '$3',
   marginTop: '$10',
+
+  div: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    button: {
+      transition: 'all 0.2s ease-in-out',
+
+      borderRadius: '4px',
+      padding: '$2 $2 $1 $2',
+
+      '&:hover': {
+        background: '$gray500',
+
+        svg: {
+          color: '$purple100',
+        },
+      },
+    },
+  },
 })
 
 export const Content = styled('div', {
   height: 'calc(70vh - 50px)',
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
   gap: '$5',
   marginTop: '4rem',
 

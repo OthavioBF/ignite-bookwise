@@ -1,6 +1,6 @@
 import { styled } from '@/styles/stitches.config'
 
-export const Container = styled('button', {
+export const Container = styled('div', {
   display: 'none',
   cursor: 'default',
   position: 'fixed',

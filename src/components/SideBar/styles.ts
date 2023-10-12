@@ -3,6 +3,7 @@ import { styled } from '../../styles/stitches.config'
 export const Container = styled('div', {
   padding: '$10 3.25rem $6',
   height: 'calc(100vh - 50px)',
+  minWidth: '232px',
 
   borderRadius: '12px',
 

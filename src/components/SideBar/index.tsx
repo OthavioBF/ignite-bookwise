@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Binoculars, ChartLineUp, SignIn, SignOut, User } from 'phosphor-react'
 
@@ -12,23 +12,29 @@ import {
   SideBarHeader,
 } from './styles'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 interface SideBarProps {
   openLoginModal: () => void
 }
 
 export function SideBar({ openLoginModal }: SideBarProps) {
-  const [selectedRoute, setSelectedRoute] = useState('home')
+  const [selectedRoute, setSelectedRoute] = useState('/home')
 
+  const session = useSession()
   const router = useRouter()
 
-  const logged = false
+  const logged = session.status === 'authenticated'
 
-  function handleNavigate(route: string) {
-    router.push(`/app/${route}`)
+  const userInfo = session.data?.user
 
-    setSelectedRoute(route)
-  }
+  console.log(session.data?.user)
+
+  const currentRoute = router.route
+
+  useEffect(() => {
+    setSelectedRoute(currentRoute)
+  }, [currentRoute])
 
   return (
     <Container>
@@ -37,31 +43,33 @@ export function SideBar({ openLoginModal }: SideBarProps) {
 
         <SectionsContainer>
           <NavigationButton
-            active={selectedRoute === 'home'}
-            onClick={() => handleNavigate('home')}
+            active={selectedRoute === '/home'}
+            onClick={() => router.push('/home')}
           >
             <div>.</div>
             <ChartLineUp size={24} />
             <strong>Início</strong>
           </NavigationButton>
           <NavigationButton
-            active={selectedRoute === 'explorar'}
-            onClick={() => handleNavigate('explorar')}
+            active={selectedRoute === '/explorar'}
+            onClick={() => router.push('/explorar')}
           >
             <div>.</div>
 
             <Binoculars size={24} />
             <strong>Explorar</strong>
           </NavigationButton>
-          <NavigationButton
-            active={selectedRoute === 'perfil'}
-            onClick={() => handleNavigate('perfil')}
-          >
-            <div>.</div>
+          {logged && (
+            <NavigationButton
+              active={selectedRoute === '/perfil/[id]'}
+              onClick={() => router.push(`/perfil/${userInfo?.name}`)}
+            >
+              <div>.</div>
 
-            <User size={24} />
-            <strong>Perfil</strong>
-          </NavigationButton>
+              <User size={24} />
+              <strong>Perfil</strong>
+            </NavigationButton>
+          )}
         </SectionsContainer>
       </SideBarHeader>
 
@@ -69,8 +77,14 @@ export function SideBar({ openLoginModal }: SideBarProps) {
         <FooterContent onClick={openLoginModal}>
           {logged ? (
             <>
-              <Image src="" width={32} height={32} alt="" />
-              <span>Cristopher</span>
+              <Image
+                loader={() => `${userInfo?.image}`}
+                src={`/${userInfo?.image}`}
+                width={32}
+                height={32}
+                alt=""
+              />
+              <span>{userInfo?.name}</span>
               <SignOut size={20} color="#F75A68" />
             </>
           ) : (

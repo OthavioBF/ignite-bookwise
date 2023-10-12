@@ -39,7 +39,7 @@ export default function Landing() {
               <Image src={githubLogo} width={32} height={32} alt="" />
               <strong>Entrar com GitHub</strong>
             </LoginCard>
-            <LoginCard onClick={() => router.push('/app/home')}>
+            <LoginCard onClick={() => router.push('/home')}>
               <Image src={rocketLogo} width={32} height={32} alt="" />
               <strong>Acessar como visitante</strong>
             </LoginCard>

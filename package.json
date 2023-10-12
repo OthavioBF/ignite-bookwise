@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-      "seed":"esbuild prisma/seed.ts --outfile=node_modules/tmp-seed.cjs --bundle --format=cjs --external:prisma --external:@prisma/client && node node_modules/tmp-seed.cjs --preview-feature"
+    "seed": "esbuild prisma/seed.ts --outfile=node_modules/tmp-seed.cjs --bundle --format=cjs --external:prisma --external:@prisma/client && node node_modules/tmp-seed.cjs --preview-feature"
   },
   "prisma": {
-    "seed": "node --loader ts-node/esm prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
@@ -25,12 +25,14 @@
     "eslint-config-next": "13.5.0",
     "googleapis": "^126.0.1",
     "next": "13.4.19",
+    "next-auth": "^4.23.2",
     "nookies": "^2.5.2",
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
     "react-simple-star-rating": "^5.1.7",
+    "uuid": "^9.0.1",
     "zod": "^3.22.2"
   },
   "devDependencies": {
@@ -40,6 +42,7 @@
     "@types/uuid": "^9.0.4",
     "prisma": "^5.3.1",
     "ts-node": "^10.9.1",
+    "tsx": "^3.13.0",
     "typescript": "^5.2.2"
   }
 }

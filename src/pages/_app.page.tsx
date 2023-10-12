@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app'
 import { Nunito } from 'next/font/google'
 
 import { globalStyles } from '@/styles/globals'
+import { SessionProvider } from 'next-auth/react'
 
 globalStyles()
 
@@ -18,12 +19,17 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
     <div className={`${nunito.className}`}>
-      {getLayout(<Component {...pageProps} />)}
+      <SessionProvider session={session}>
+        {getLayout(<Component {...pageProps} />)}
+      </SessionProvider>
     </div>
   )
 }

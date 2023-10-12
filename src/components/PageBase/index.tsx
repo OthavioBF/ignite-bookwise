@@ -10,7 +10,7 @@ interface PageBaseProps {
 
 export function PageBase({ children }: PageBaseProps) {
   const [loginModalOpen, setLoginModalOpen] = useState(false)
-  const [bookModalOpen, setBookModalOpen] = useState(true)
+  const [bookModalOpen, setBookModalOpen] = useState(false)
 
   return (
     <Container>

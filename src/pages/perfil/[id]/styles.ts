@@ -1,7 +1,6 @@
-import { styled } from '../../styles/stitches.config'
+import { styled } from '../../../styles/stitches.config'
 
 export const Container = styled('div', {
-  padding: '$5',
   display: 'flex',
   flexDirection: 'column',
 })
