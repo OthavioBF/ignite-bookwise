@@ -3,7 +3,7 @@ import { styled } from '@/styles/stitches.config'
 export const Container = styled('div', {
   margin: '0 auto',
   height: '900px',
-  width: '1180px',
+  width: '1500px',
   background: 'white',
   flex: 1,
 
@@ -15,7 +15,7 @@ export const Container = styled('div', {
 export const TableContainer = styled('table', {
   background: '$gray100',
   borderSpacing: 0,
-  borderCollapse: 'separate',
+  borderCollapse: 'collapse',
   borderRadius: '8px',
   width: '100%',
 
@@ -23,12 +23,17 @@ export const TableContainer = styled('table', {
 
   tbody: {
     tr: {
-      '&:first-child': {
-        borderTopLeftRadius: '8px',
-      },
+      borderTopLeftRadius: '6px',
+      borderTopRightRadius: '6px',
 
-      '&:last-child': {
-        borderTopRightRadius: '8px',
+      th: {
+        '&:first-child': {
+          borderTopLeftRadius: '6px',
+        },
+
+        '&:last-child': {
+          borderTopRightRadius: '6px',
+        },
       },
     },
   },
@@ -45,10 +50,8 @@ export const TableHead = styled('th', {
 })
 
 export const TableDataRow = styled('tr', {
-  width: '100%',
-
   '& + tr': {
-    borderTop: '1px solid #E2E8F0',
+    borderTop: '1px solid $gray300',
   },
 })
 
@@ -57,6 +60,10 @@ export const TableData = styled('td', {
   padding: '1rem',
   textAlign: 'center',
   verticalAlign: 'middle',
+
+  '&:last-child': {
+    textAlign: 'center',
+  },
 
   div: {
     position: 'relative',
@@ -74,16 +81,15 @@ export const TableData = styled('td', {
     span: {
       visibility: 'hidden',
       width: '120px',
-      backgroundColor: 'black',
-      color: '#fff',
-      textAlign: 'center',
-      padding: '5px 0',
+      backgroundColor: '$gray200',
+      color: '$gray400',
+      padding: '$2 $3',
       borderRadius: '6px',
 
       opacity: 0,
       transition: 'opacity 1s',
 
-      top: '100%',
+      top: '120%',
       left: '50%',
       marginLeft: '-60px',
 
@@ -98,7 +104,7 @@ export const TableData = styled('td', {
         marginLeft: '-5px',
         borderWidth: '5px',
         borderStyle: 'solid',
-        borderColor: 'transparent transparent black transparent',
+        borderColor: 'transparent transparent $gray200 transparent',
       },
     },
   },
@@ -108,12 +114,12 @@ export const IconButton = styled('button', {
   textAlign: 'center',
   borderRadius: '4px',
   width: '1.5rem',
-  padding: '4px',
+  padding: '4px 12px',
 
   transition: 'all 0.2s ease-in-out',
 
   '&:hover': {
-    background: '$gray600',
+    background: '$gray200',
   },
 
   svg: {

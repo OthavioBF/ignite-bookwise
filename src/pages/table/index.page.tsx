@@ -12,6 +12,9 @@ import { ReactNode } from 'react'
 import Link from 'next/link'
 import { formatPrice } from '@/utils/formatPrice'
 import dayjs from 'dayjs'
+import { State, StateChip } from '@/components/StateChip'
+
+const { Cancelado, Deferido, Indeferido } = State
 
 enum dataType {
   text,
@@ -46,6 +49,17 @@ interface TableDataProps {
   [key: string]: any
 }
 
+const StateChipStyle = [
+  {
+    color: '#DC2626',
+    background: '#FEE2E2',
+  },
+  {
+    color: '#16A34A',
+    background: '#DCFCE7',
+  },
+]
+
 const tableData: TableDataProps[] = [
   {
     id: '1',
@@ -53,6 +67,7 @@ const tableData: TableDataProps[] = [
     dataSolicitacao: '13/04/2019',
     valor: 40000,
     dataSituacao: '1997-07-16T19:20:30.45+01:00',
+    situacao: 'Cancelado',
   },
   {
     id: '2',
@@ -72,7 +87,7 @@ const tableHeadData: TableHeadProps[] = [
     name: 'anexo',
     label: 'Anexo',
     type: 'icon',
-    width: '10%',
+    width: '5%',
     render: () => <Eye size={24} />,
   },
   {
@@ -85,7 +100,7 @@ const tableHeadData: TableHeadProps[] = [
     name: 'valor',
     label: 'Valor',
     type: 'price',
-    width: '10%',
+    width: '5%',
   },
   {
     name: 'dataSituacao',
@@ -98,6 +113,13 @@ const tableHeadData: TableHeadProps[] = [
     label: 'Situacao',
     type: 'text',
     width: '10%',
+    render: (value) => (
+      <StateChip
+        label={value}
+        background={StateChipStyle[Deferido].background}
+        color={StateChipStyle[Deferido].color}
+      />
+    ),
   },
 ]
 
@@ -111,6 +133,10 @@ export default function ResponsiveTable() {
           {
             icon: () => <FilePdf size={24} weight="bold" />,
             tooltip: 'Baixar arquivo',
+          },
+          {
+            icon: () => <Eye size={24} weight="bold" />,
+            tooltip: 'Vizualizar documento',
           },
           {
             icon: () => <Eye size={24} weight="bold" />,
@@ -162,7 +188,17 @@ function Table({ tableData, tableColumns, actions }: TableProps) {
                 )
               }
 
-              if (tableColumn.render) {
+              if (tableColumn.render && tableColumn.type === 'icon') {
+                return (
+                  <TableData key={tableData.id}>
+                    <IconButton>
+                      {tableColumn.render(tableData[tableColumn.name])}
+                    </IconButton>
+                  </TableData>
+                )
+              }
+
+              if (tableColumn.render && tableData[tableColumn.name]) {
                 return (
                   <TableData key={tableData.id}>
                     {tableColumn.render(tableData[tableColumn.name])}
