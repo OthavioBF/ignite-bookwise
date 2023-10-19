@@ -76,59 +76,57 @@ const tableData: TableDataProps[] = [
   },
 ]
 
-const tableHeadData: TableHeadProps[] = [
-  {
-    name: 'requerimentoNumero',
-    label: 'Requerimento/numero',
-    type: 'text',
-    width: '20%',
-  },
-  {
-    name: 'anexo',
-    label: 'Anexo',
-    type: 'icon',
-    width: '5%',
-    render: () => <Eye size={24} />,
-  },
-  {
-    name: 'dataSolicitacao',
-    label: 'Data Solicitacao',
-    type: 'text',
-    width: '20%',
-  },
-  {
-    name: 'valor',
-    label: 'Valor',
-    type: 'price',
-    width: '5%',
-  },
-  {
-    name: 'dataSituacao',
-    label: 'Data Situacao',
-    type: 'date',
-    width: '15%',
-  },
-  {
-    name: 'situacao',
-    label: 'Situacao',
-    type: 'text',
-    width: '10%',
-    render: (value) => (
-      <StateChip
-        label={value}
-        background={StateChipStyle[Deferido].background}
-        color={StateChipStyle[Deferido].color}
-      />
-    ),
-  },
-]
-
 export default function ResponsiveTable() {
   return (
     <Container>
       <Table
         tableData={tableData}
-        tableColumns={tableHeadData}
+        tableColumns={[
+          {
+            name: 'requerimentoNumero',
+            label: 'Requerimento/numero',
+            type: 'text',
+            width: '20%',
+          },
+          {
+            name: 'anexo',
+            label: 'Anexo',
+            type: 'icon',
+            width: '5%',
+            render: () => <Eye size={24} />,
+          },
+          {
+            name: 'dataSolicitacao',
+            label: 'Data Solicitacao',
+            type: 'text',
+            width: '20%',
+          },
+          {
+            name: 'valor',
+            label: 'Valor',
+            type: 'price',
+            width: '5%',
+          },
+          {
+            name: 'dataSituacao',
+            label: 'Data Situacao',
+            type: 'date',
+            width: '15%',
+          },
+          {
+            name: 'situacao',
+            label: 'Situacao',
+            type: 'text',
+            width: '10%',
+            render: (value) => (
+              <StateChip
+                label={value}
+                background={StateChipStyle[Deferido].background}
+                color={StateChipStyle[Deferido].color}
+              />
+            ),
+          },
+        ]}
         actions={[
           {
             icon: () => <FilePdf size={24} weight="bold" />,
