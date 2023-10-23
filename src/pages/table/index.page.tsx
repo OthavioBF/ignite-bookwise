@@ -7,12 +7,14 @@ import {
   TableDataRow,
   TableContainer,
   IconButton,
+  ScrollView,
 } from './styles'
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import { formatPrice } from '@/utils/formatPrice'
 import dayjs from 'dayjs'
 import { State, StateChip } from '@/components/StateChip'
+import { PageTabs } from '@/components/PageTabs'
 
 const { Cancelado, Deferido, Indeferido } = State
 
@@ -63,7 +65,8 @@ const StateChipStyle = [
 const tableData: TableDataProps[] = [
   {
     id: '1',
-    requerimentoNumero: '20462',
+    requerimentoNumero:
+      '220462220462220462220462220462220462220462220462220462',
     dataSolicitacao: '13/04/2019',
     valor: 40000,
     dataSituacao: '1997-07-16T19:20:30.45+01:00',
@@ -76,9 +79,28 @@ const tableData: TableDataProps[] = [
   },
 ]
 
-export default function ResponsiveTable() {
+export default function Page() {
   return (
     <Container>
+      <PageTabs
+        tabs={[
+          {
+            name: 'Solicitar Requerimento',
+            component: <ResponsiveTable />,
+          },
+          {
+            name: 'Meus Requerimentos',
+            component: <GradesTable />,
+          },
+        ]}
+      />
+    </Container>
+  )
+}
+
+export function ResponsiveTable() {
+  return (
+    <ScrollView>
       <Table
         tableData={tableData}
         tableColumns={[
@@ -146,7 +168,81 @@ export default function ResponsiveTable() {
           },
         ]}
       />
-    </Container>
+    </ScrollView>
+  )
+}
+
+export function GradesTable() {
+  return (
+    <ScrollView>
+      <Table
+        tableData={tableData}
+        tableColumns={[
+          {
+            name: 'componenteDisciplina',
+            label: 'Componente Circular/ disciplina',
+            type: 'text',
+            width: '20%',
+          },
+          {
+            name: 'anexo',
+            label: 'Anexo',
+            type: 'icon',
+            width: '5%',
+            render: () => <Eye size={24} />,
+          },
+          {
+            name: 'dataSolicitacao',
+            label: 'Data Solicitacao',
+            type: 'text',
+            width: '20%',
+          },
+          {
+            name: 'valor',
+            label: 'Valor',
+            type: 'price',
+            width: '5%',
+          },
+          {
+            name: 'dataSituacao',
+            label: 'Data Situacao',
+            type: 'date',
+            width: '15%',
+          },
+          {
+            name: 'situacao',
+            label: 'Situacao',
+            type: 'text',
+            width: '10%',
+            render: (value) => (
+              <StateChip
+                label={value}
+                background={StateChipStyle[Deferido].background}
+                color={StateChipStyle[Deferido].color}
+              />
+            ),
+          },
+        ]}
+        actions={[
+          {
+            icon: () => <FilePdf size={24} weight="bold" />,
+            tooltip: 'Baixar arquivo',
+          },
+          {
+            icon: () => <Eye size={24} weight="bold" />,
+            tooltip: 'Vizualizar documento',
+          },
+          {
+            icon: () => <Eye size={24} weight="bold" />,
+            tooltip: 'Baixar arquivo',
+          },
+          {
+            icon: () => <Eye size={24} weight="bold" />,
+            tooltip: 'Baixar arquivo',
+          },
+        ]}
+      />
+    </ScrollView>
   )
 }
 
@@ -206,7 +302,7 @@ function Table({ tableData, tableColumns, actions }: TableProps) {
 
               return (
                 <TableData key={tableData.id}>
-                  {tableData[tableColumn.name]}
+                  <span>{tableData[tableColumn.name]}</span>
                 </TableData>
               )
             })}

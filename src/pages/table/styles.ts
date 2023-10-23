@@ -2,8 +2,7 @@ import { styled } from '@/styles/stitches.config'
 
 export const Container = styled('div', {
   margin: '0 auto',
-  height: '900px',
-  width: '1500px',
+  height: 'fit-content',
   background: 'white',
   flex: 1,
 
@@ -12,13 +11,19 @@ export const Container = styled('div', {
   padding: '3rem',
 })
 
+export const ScrollView = styled('div', {
+  overflowY: 'hidden',
+  overflowX: 'auto',
+  width: '100%',
+})
+
 export const TableContainer = styled('table', {
+  display: 'block',
   background: '$gray100',
   borderSpacing: 0,
   borderCollapse: 'collapse',
   borderRadius: '8px',
   width: '100%',
-
   flex: 1,
 
   tbody: {
@@ -63,6 +68,11 @@ export const TableData = styled('td', {
 
   '&:last-child': {
     textAlign: 'center',
+  },
+
+  span: {
+    wordBreak: 'break-word',
+    fontSize: '$md',
   },
 
   div: {
